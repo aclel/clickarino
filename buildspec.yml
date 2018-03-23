@@ -1,0 +1,13 @@
+version: 0.2
+            
+phases:
+  install:
+    commands:
+      – apt-get -y update
+      – npm install -g serverless@1.26.1
+  build:
+    commands:
+      - serverless package
+  post_deploy:
+    commands:
+      - serverless deploy --package=.serverless/clickarino.zip
