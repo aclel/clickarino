@@ -1,0 +1,42 @@
+service: clickarino
+
+provider:
+  name: aws
+  runtime: python3.6
+  stage: production
+  region: ap-southeast-2
+  events:
+      - s3:
+        bucket: clickarino-uploads
+        event: s3:ObjectCreated:CompleteMultipartUpload
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:*
+      Resource: "*"
+    - Effect: Allow
+      Action:
+        - iot:*
+      Resource: "*"
+
+functions:
+  create_click:
+    handler: create_click.main
+    timeout: 30  # seconds
+
+plugins:
+  - serverless-python-requirements
+package:
+  exclude:
+    - test_audio/**
+    - node_modules/**
+    - package.json
+    - package-lock.json
+    - example.py
+  include:
+    - bin/**
+
+custom:
+  pythonRequirements:
+    zip: true
+    dockerizePip: true

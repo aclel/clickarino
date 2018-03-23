@@ -1,0 +1,55 @@
+body {
+    background-color: #eae0cc;
+}
+
+h1 {
+    font-family: 'Bungee', cursive;
+    color: #69b578;
+}
+
+.title {
+    text-align: center;
+    font-size: 60px;
+}
+
+.wrapper {
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: "a b c";
+}
+
+.item-b {
+    grid-area: b;
+}
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputfile + label {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: black;
+    display: inline-block;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: red;
+}
+
+.inputfile + label {
+	cursor: pointer; /* "hand" cursor */
+}
+
+.inputfile:focus + label {
+	outline: 1px dotted #000;
+	outline: -webkit-focus-ring-color auto 5px;
+}

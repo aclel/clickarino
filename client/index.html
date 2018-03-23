@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
+    <link href="index.css" rel="stylesheet">
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.204.0.min.js"></script>
+    <script src="aws-iot-sdk-browser-bundle.js"></script>
+    <script src="bundle.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="item-b">
+        <h1 class="title">Clickarino</h1>
+        <h2>Upload a track and get a click back!</h2>
+        <div id="app">
+            <ul id="messages"></ul>
+            <input type="file" name="file" id="file" class="inputfile" accept="audio/*">
+            <label for="file">Choose a file</label>
+
+            <button id="uploadtrack" onclick="uploadTrack()">
+                Upload Track
+            </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+
+

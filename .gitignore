@@ -1,0 +1,8 @@
+.DS_Store
+.vscode
+lambda/test_audio
+node_modules
+bin
+*.zip
+.serverless
+bundle.js
