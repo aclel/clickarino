@@ -3,10 +3,10 @@ version: 0.2
 phases:
   install:
     commands:
-      - npm install
+      - cd lambda && npm install
   build:
     commands:
-      - cd lambda && serverless package
+      - serverless package
   post_build:
     commands:
-      - cd lambda && serverless deploy --package=.serverless/clickarino.zip
+      - serverless deploy --package=.serverless/clickarino.zip
