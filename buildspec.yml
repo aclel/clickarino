@@ -3,13 +3,10 @@ version: 0.2
 phases:
   install:
     commands:
-      - apt-get -y update
-      - npm install -g serverless@1.26.1
+      - npm install
   build:
     commands:
-      - cd lambda
       - serverless package
   post_build:
     commands:
-      - cd lambda
       - serverless deploy --package=.serverless/clickarino.zip
