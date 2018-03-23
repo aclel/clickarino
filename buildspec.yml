@@ -8,6 +8,6 @@ phases:
   build:
     commands:
       - serverless package
-  post_deploy:
+  post_build:
     commands:
       - serverless deploy --package=.serverless/clickarino.zip
