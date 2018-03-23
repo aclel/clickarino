@@ -7,7 +7,9 @@ phases:
       - npm install -g serverless@1.26.1
   build:
     commands:
+      - cd lambda
       - serverless package
   post_build:
     commands:
+      - cd lambda
       - serverless deploy --package=.serverless/clickarino.zip
