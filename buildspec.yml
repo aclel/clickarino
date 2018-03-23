@@ -3,7 +3,8 @@ version: 0.2
 phases:
   install:
     commands:
-      - cd lambda && npm install
+      - cd lambda && npm install -g serverless
+      - npm install
   build:
     commands:
       - serverless package
