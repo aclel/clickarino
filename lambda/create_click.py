@@ -63,7 +63,7 @@ def main(event, context):
         )
 
         output_path = create_click(filepath)
-        # s3_client.upload_file(output_path, CLICKTRACK_BUCKET_NAME, 'click.wav')
+        s3_client.upload_file(output_path, CLICKTRACK_BUCKET_NAME, 'click.wav')
 
         tags = {
             'IdentityId': cognito_identity_id
