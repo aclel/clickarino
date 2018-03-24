@@ -71,6 +71,7 @@ def main(event, context):
 
         s3_client.put_object(
             Bucket=CLICKTRACK_BUCKET_NAME,
+            Body=open(output_path, 'rb'),
             Key='click.wav',
             Tagging=tag_set
         )
