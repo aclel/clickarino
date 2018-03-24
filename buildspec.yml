@@ -7,7 +7,5 @@ phases:
       - npm install
   build:
     commands:
-      - serverless package
-  post_build:
-    commands:
-      - serverless deploy --package=.serverless/clickarino.zip
+      - serverless deploy
+
