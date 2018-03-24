@@ -62,8 +62,7 @@ def main(event, context):
             payload=json.dumps(payload)
         )
 
-        output_path = create_click(filepath)
-        s3_client.upload_file(output_path, CLICKTRACK_BUCKET_NAME, 'click.wav')
+        output_path = _create_click(filepath)
 
         tags = {
             'IdentityId': cognito_identity_id
@@ -94,7 +93,7 @@ def main(event, context):
         )
 
 
-def create_click(filepath):
+def _create_click(filepath):
     _init_bin('ffmpeg')
 
     # Load the file
