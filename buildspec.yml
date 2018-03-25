@@ -5,7 +5,12 @@ phases:
     commands:
       - cd lambda && npm install -g serverless
       - npm install
+      - cd ../client && npm install
   build:
     commands:
-      - serverless deploy
+      - cd ../lamba && serverless deploy
+artifacts:
+  files:
+    - client/*
+  discard_paths: yes
 
