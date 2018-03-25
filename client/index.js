@@ -72,17 +72,14 @@ AWS.config.credentials.get(function(err, data) {
     }
 });
 
-window.saveByteArray = function (data, name) {
+window.saveFile = function (url) {
+    console.log("creating download element");
     var a = document.createElement("a");
     document.body.appendChild(a);
     a.style = "display: none";
 
-    var blob = new Blob(data, {type: "octet/stream"}),
-        url = window.URL.createObjectURL(blob);
     a.href = url;
-    a.download = name;
     a.click();
-    window.URL.revokeObjectURL(url);
 };
 
 // Connect handler
@@ -107,17 +104,11 @@ window.onFailed = function(id) {
 // Message handler
  window.mqttClientMessageHandler = function(topic, pload) {
     var payload = JSON.parse(pload);
-    console.log(payload);
     if (payload.hasOwnProperty('Bucket') && payload.hasOwnProperty('Key')) {
         console.log("downloading click");
         var params = { Bucket: payload.Bucket, Key: payload.Key}
-        s3.getObject(params, function(err, data) {
-            if (err) {
-                console.log(err, err.stack);
-            } else {
-                saveByteArray(data.Body, "click.wav");
-            }
-        });
+        var url = s3.getSignedUrl('getObject', params);
+        saveFile(url);
     } else if (payload.hasOwnProperty('Message')) {
         var messageList = document.getElementById("messages");
         var messageElement = document.createElement("li");

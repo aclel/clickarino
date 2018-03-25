@@ -73,6 +73,9 @@ def main(event, context):
             Bucket=CLICKTRACK_BUCKET_NAME,
             Body=open(output_path, 'rb'),
             Key='click.wav',
+            Metadata={
+                'Content-Disposition': 'attachment; filename=click.wav;'
+            },
             Tagging=tag_set
         )
 
