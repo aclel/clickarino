@@ -73,35 +73,23 @@ AWS.config.credentials.get(function(err, data) {
 });
 
 window.saveFile = function (url) {
-    console.log("creating download element");
     var a = document.createElement("a");
     document.body.appendChild(a);
     a.style = "display: none";
-
     a.href = url;
     a.click();
 };
 
-// Connect handler
 window.mqttClientConnectHandler = function() {
-    console.log('connect');
-    mqttClient.subscribe('ap-southeast-2:627265be-4e99-4292-9b25-2e96f08af0db');
+    // Subscribe to the topic specific to this cognito identity id
+    var identityId = AWS.config.credentials.identityId;
+    mqttClient.subscribe(identityId);
  };
  
- // Reconnect handler
  window.mqttClientReconnectHandler = function() {
-    //console.log('reconnect');
+    console.log('reconnect');
  };
 
-window.onStartedDownload = function(id) {
-    console.log(`Started downloading: ${id}`);
-}
-  
-window.onFailed = function(id) {
-    console.log(`Download failed: ${error}`);
-}
-
-// Message handler
  window.mqttClientMessageHandler = function(topic, pload) {
     var payload = JSON.parse(pload);
     if (payload.hasOwnProperty('Bucket') && payload.hasOwnProperty('Key')) {
