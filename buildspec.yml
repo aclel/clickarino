@@ -8,7 +8,7 @@ phases:
       - cd ../client && npm install
   build:
     commands:
-      - cd ../lamba && serverless deploy
+      - cd lamba && serverless deploy
 artifacts:
   files:
     - client/*
