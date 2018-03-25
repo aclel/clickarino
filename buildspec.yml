@@ -12,5 +12,5 @@ phases:
 artifacts:
   files:
     - client/*
-  discard_paths: yes
+  discard-paths: yes
 
