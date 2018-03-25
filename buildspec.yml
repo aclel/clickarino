@@ -11,6 +11,7 @@ phases:
       - cd ../lambda && serverless deploy
 artifacts:
   files:
-    - client/*
+    - '*'
+  base-directory: 'client'
   discard-paths: yes
 
