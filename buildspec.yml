@@ -8,6 +8,7 @@ phases:
       - cd ../client && npm install
   build:
     commands:
+      - pwd
       - cd lambda && serverless deploy
 artifacts:
   files:
