@@ -1,14 +1,14 @@
-var uploadsBucketName = 'clickarino-uploads';
-var bucketRegion = 'ap-southeast-2';
-var IdentityPoolId = 'ap-southeast-2:95798f07-66e2-4b68-9b13-9d3a4f985dfd';
-var iotHost = 'ak4y3bhc8ktbp.iot.ap-southeast-2.amazonaws.com';
+var UPLOADS_BUCKET_NAME = 'clickarino-uploads';
+var BUCKET_REGION = 'ap-southeast-2';
+var IDENTITY_POOL_ID = 'ap-southeast-2:95798f07-66e2-4b68-9b13-9d3a4f985dfd';
+var IOT_HOST = 'ak4y3bhc8ktbp.iot.ap-southeast-2.amazonaws.com';
 
 var AWSIoTData = require('aws-iot-device-sdk');
 
 AWS.config.update({
-    region: bucketRegion,
+    region: BUCKET_REGION,
     credentials: new AWS.CognitoIdentityCredentials({
-        IdentityPoolId: IdentityPoolId
+        IdentityPoolId: IDENTITY_POOL_ID
     })
 });
 
@@ -23,7 +23,7 @@ const mqttClient = AWSIoTData.device({
        region: AWS.config.region,
     
        // Set the AWS IoT Host Endpoint
-       host: iotHost,
+       host: IOT_HOST,
     
        // Use the clientId created earlier.
        clientId: clientId,
@@ -126,7 +126,7 @@ mqttClient.on('message', window.mqttClientMessageHandler);
 
 var s3 = new AWS.S3({
     apiVersion: '2006-03-01',
-    params: {Bucket: uploadsBucketName}
+    params: { Bucket: UPLOADS_BUCKET_NAME }
 });
 
 window.uploadTrack = function() {
