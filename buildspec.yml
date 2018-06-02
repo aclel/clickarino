@@ -9,9 +9,3 @@ phases:
   build:
     commands:
       - cd ../lambda && serverless deploy
-artifacts:
-  files:
-    - '*'
-  base-directory: 'client'
-  discard-paths: yes
-

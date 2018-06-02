@@ -7,7 +7,7 @@ provider:
   region: ap-southeast-2
   events:
       - s3:
-        bucket: clickarino-uploads
+        bucket: clickarino-userfiles-mobilehub-2127974803
         event: s3:ObjectCreated:CompleteMultipartUpload
   iamRoleStatements:
     - Effect: Allow
@@ -22,7 +22,7 @@ provider:
 functions:
   create_click:
     handler: create_click.main
-    timeout: 30  # seconds
+    timeout: 60  # seconds
 
 plugins:
   - serverless-python-requirements
