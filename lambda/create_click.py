@@ -31,7 +31,7 @@ CURR_BIN_DIR = os.path.join(LAMBDA_TASK_ROOT, 'bin')
 BIN_DIR = '/tmp/bin'
 os.environ['PATH'] += ':' + BIN_DIR
 
-CLICKTRACK_BUCKET_NAME = 'clickarino-userfiles-mobilehub-2127974803'
+CLICKTRACK_BUCKET_NAME = 'clickarino-userfiles-mobilehub-571859050'
 
 s3_client = boto3.client('s3')
 iot_client = boto3.client('iot-data')
