@@ -5,7 +5,6 @@ phases:
     commands:
       - cd lambda && npm install -g serverless
       - npm install
-      - cd ../client && npm install
   build:
     commands:
       - cd ../lambda && serverless deploy
