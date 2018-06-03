@@ -42,32 +42,32 @@ def main(event, context):
         bucket = record['s3']['bucket']['name']
         key = record['s3']['object']['key']
 
-        # metadata = s3_client.head_object(Bucket=bucket, Key=key)['Metadata']
-        # cognito_identity_id = metadata['identityid']
+        metadata = s3_client.head_object(Bucket=bucket, Key=key)['Metadata']
+        cognito_identity_id = metadata['identityid']
 
-        # payload = { 'Message': 'Firing up the clickarino' }
-        # response = iot_client.publish(
-        #     topic=cognito_identity_id,
-        #     qos=1,
-        #     payload=json.dumps(payload)
-        # )
+        payload = { 'Message': 'Firing up the clickarino' }
+        response = iot_client.publish(
+            topic=cognito_identity_id,
+            qos=1,
+            payload=json.dumps(payload)
+        )
 
         filepath = os.path.join('/tmp', os.path.basename(key))
         s3_client.download_file(bucket, key, filepath)
 
-        # payload = { 'Message': 'Clickifying the file...' }
-        # response = iot_client.publish(
-        #     topic=cognito_identity_id,
-        #     qos=1,
-        #     payload=json.dumps(payload)
-        # )
+        payload = { 'Message': 'Clickifying the file...' }
+        response = iot_client.publish(
+            topic=cognito_identity_id,
+            qos=1,
+            payload=json.dumps(payload)
+        )
 
         output_path = _create_click(filepath)
 
-        # tags = {
-        #     'IdentityId': cognito_identity_id
-        # }
-        # tag_set = urllib.parse.urlencode(tags)
+        tags = {
+            'IdentityId': cognito_identity_id
+        }
+        tag_set = urllib.parse.urlencode(tags)
 
         s3_client.put_object(
             Bucket=CLICKTRACK_BUCKET_NAME,
@@ -76,15 +76,15 @@ def main(event, context):
             Metadata={
                 'Content-Disposition': 'attachment; filename=click.wav;'
             },
-            # Tagging=tag_set
+            Tagging=tag_set
         )
 
-        # payload = { 'Message': 'Clickification complete - sending the file back to you now'}
-        # response = iot_client.publish(
-        #     topic=cognito_identity_id,
-        #     qos=1,
-        #     payload=json.dumps(payload)
-        # )
+        payload = { 'Message': 'Clickification complete - sending the file back to you now'}
+        response = iot_client.publish(
+            topic=cognito_identity_id,
+            qos=1,
+            payload=json.dumps(payload)
+        )
 
         # payload = {
         #     'Bucket': CLICKTRACK_BUCKET_NAME,
