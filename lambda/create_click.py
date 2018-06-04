@@ -79,7 +79,7 @@ def main(event, context):
             Tagging=tag_set
         )
 
-        payload = { 'Message': 'Clickification complete - sending the file back to you now'}
+        payload = { 'Message': 'Clickification complete' }
         response = iot_client.publish(
             topic=cognito_identity_id,
             qos=1,
