@@ -86,15 +86,15 @@ def main(event, context):
             payload=json.dumps(payload)
         )
 
-        # payload = {
-        #     'Bucket': CLICKTRACK_BUCKET_NAME,
-        #     'Key': 'click.wav'
-        # }
-        # response = iot_client.publish(
-        #     topic=cognito_identity_id,
-        #     qos=1,
-        #     payload=json.dumps(payload)
-        # )
+        payload = {
+            'Bucket': CLICKTRACK_BUCKET_NAME,
+            'Key': 'click.wav'
+        }
+        response = iot_client.publish(
+            topic=cognito_identity_id,
+            qos=1,
+            payload=json.dumps(payload)
+        )
 
 
 def _create_click(filepath):
